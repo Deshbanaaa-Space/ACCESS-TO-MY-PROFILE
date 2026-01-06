@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil | Deo Sahbana Putra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #334155;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            will-change: transform;
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 41, 128, 0.08),
+                        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        /* Header dengan gradien biru elegan */
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 40px 40px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #60a5fa 0%, #1e40af 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+        }
+        
+        .avatar i {
+            font-size: 42px;
+            color: white;
+        }
+        
+        .name-title {
+            flex: 1;
+        }
+        
+        .name {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .title {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Konten utama */
+        .content {
+            display: flex;
+            padding: 0;
+            transform: translateZ(0);
+        }
+        
+        .left-panel {
+            flex: 1;
+            padding: 35px;
+            border-right: 1px solid rgba(241, 245, 249, 0.5);
+            background: rgba(250, 252, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .right-panel {
+            flex: 1;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #1e40af;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(224, 242, 254, 0.5);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #3b82f6;
+        }
+        
+        .info-item {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            transform: translateZ(0);
+        }
+        
+        .info-icon {
+            background: rgba(239, 246, 255, 0.8);
+            color: #1e40af;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+            font-size: 18px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(219, 234, 254, 0.3);
+        }
+        
+        .info-text h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #64748b;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        
+        .info-text p {
+            font-size: 1.1rem;
+            color: #1e293b;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        
+        /* Bendera Indonesia yang benar */
+        .flag-container {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .flag-indonesia {
+            width: 28px;
+            height: 20px;
+            background: linear-gradient(to bottom, #ff0000 0%, #ff0000 50%, #ffffff 50%, #ffffff 100%);
+            border-radius: 2px;
+            margin-right: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .birth-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .birth-tag {
+            background: rgba(239, 246, 255, 0.8);
+            color: #1e40af;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(219, 234, 254, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .birth-tag i {
+            margin-right: 6px;
+            font-size: 0.8rem;
+        }
+        
+        /* Panel kontak */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(240, 249, 255, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(224, 242, 254, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #3b82f6;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-4px) translateZ(0);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+            border-color: #93c5fd;
+        }
+        
+        .contact-type {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .contact-icon {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .contact-type h3 {
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .phone-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contact-description {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(30, 41, 59, 0.9);
+            color: #cbd5e1;
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .footer p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .footer-highlight {
+            color: #60a5fa;
+            font-weight: 500;
+        }
+        
+        .footer-small {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        
+        .nfc-info {
+            background: rgba(240, 249, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 25px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .nfc-info h3 {
+            color: #1e40af;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nfc-info h3 i {
+            margin-right: 8px;
+        }
+        
+        .nfc-info p {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* New Sections - Liquid Glass Style */
+        .preferences-section {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .pref-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 64, 175, 0.05) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(30, 64, 175, 0.1),
+                        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            transition: all 0.3s ease;
+        }
+        
+        .pref-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .pref-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .pref-card:hover {
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 12px 40px rgba(30, 64, 175, 0.15),
+                        0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+        }
+        
+        .pref-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+        
+        .pref-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+        }
+        
+        .pref-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .pref-content {
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .pref-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .pref-tag {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #1e40af;
+            border: 1px solid rgba(30, 64, 175, 0.2);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .pref-tag:hover {
+            background: rgba(30, 64, 175, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .friends-count {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+        
+        .friends-count i {
+            margin-right: 8px;
+        }
+        
+        /* Responsif */
+        @media (max-width: 900px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .left-panel {
+                border-right: none;
+                border-bottom: 1px solid rgba(241, 245, 249, 0.5);
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .header {
+                padding: 30px 25px 25px;
+            }
+            
+            .left-panel, .right-panel {
+                padding: 30px;
+            }
+            
+            .preferences-section {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            .phone-number {
+                font-size: 1.2rem;
+            }
+            
+            .pref-card {
+                padding: 15px;
+            }
+            
+            .footer {
+                padding: 15px 20px;
+            }
+        }
+        
+        /* Animasi halus */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .profile-card {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        /* Smooth scrolling optimization */
+        .content, .pref-card, .contact-card {
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        /* Glass effect enhancement */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <!-- Header -->
+            <div class="header">
+                <div class="profile-header">
+                    <div class="avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="name-title">
+                        <h1 class="name">Deo Sahbana Putra</h1>
+                        <p class="title">Profil Informasi Pribadi</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Konten Utama -->
+            <div class="content">
+                <!-- Panel Kiri: Informasi Pribadi -->
+                <div class="left-panel">
+                    <h2 class="section-title">Informasi Pribadi</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Nama Lengkap</h3>
+                            <p>Deo Sahbana Putra</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Tempat & Tanggal Lahir</h3>
+                            <div class="flag-container">
+                                <div class="flag-indonesia" title="Bendera Indonesia"></div>
+                                <span style="font-weight: 500;">Indonesia</span>
+                            </div>
+                            <div class="birth-details">
+                                <span class="birth-tag">
+                                    <i class="fas fa-map-marker-alt"></i> Jawa Timur
+                                </span>
+                                <span class="birth-tag">
+                                    <i class="fas fa-city"></i> Madura
+                                </span>
+                                <span class="birth-tag">
+                                    <i class="fas fa-calendar-alt"></i> 2012
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Posisi dalam Keluarga</h3>
+                            <p>Anak ke-2 dari 3 bersaudara</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Asal Daerah</h3>
+                            <p>Jawa Timur, Indonesia</p>
+                        </div>
+                    </div>
+                    
+                    <!-- New Preferences Sections -->
+                    <div class="preferences-section">
+                        <!-- Favorite Lessons -->
+                        <div class="pref-card">
+                            <div class="pref-header">
+                                <div class="pref-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="pref-title">FAVORITE LESSONS</div>
+                            </div>
+                            <div class="pref-content">
+                                <div class="pref-tags">
+                                    <span class="pref-tag">Informatics</span>
+                                    <span class="pref-tag">Coding</span>
+                                    <span class="pref-tag">Programming</span>
+                                    <span class="pref-tag">Technology</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Favorite Songs -->
+                        <div class="pref-card">
+                            <div class="pref-header">
+                                <div class="pref-icon">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="pref-title">FAVORITE SONGS</div>
+                            </div>
+                            <div class="pref-content">
+                                <div class="pref-tags">
+                                    <span class="pref-tag">Somebody's Pleasure</span>
+                                    <span class="pref-tag">Anugerah Terindah</span>
+                                    <span class="pref-tag">Serana</span>
+                                    <span class="pref-tag">Indonesian Pop</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trusted Friends -->
+                        <div class="pref-card">
+                            <div class="pref-header">
+                                <div class="pref-icon">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="pref-title">TRUSTED FRIENDS</div>
+                            </div>
+                            <div class="pref-content">
+                                <p>Hanya beberapa orang terpilih yang mendapatkan kepercayaan penuh dalam kehidupan sosial.</p>
+                                <div class="friends-count">
+                                    <i class="fas fa-user-check"></i>
+                                    4 / 60 👤
+                                </div>
+                                <p style="margin-top: 10px; font-size: 0.9rem; color: #64748b;">
+                                    <i class="fas fa-info-circle"></i> Hanya 6.7% dari total teman yang termasuk dalam kategori "Sangat Dipercaya"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informasi NFC -->
+                    <div class="nfc-info">
+                        <h3><i class="fas fa-id-card"></i> Kartu NFC</h3>
+                        <p>Tempelkan kartu NFC ini ke bagian belakang smartphone Anda untuk langsung mengakses informasi kontak ini kapan saja.</p>
+                    </div>
+                </div>
+                
+                <!-- Panel Kanan: Kontak -->
+                <div class="right-panel">
+                    <h2 class="section-title">Kontak & Informasi</h2>
+                    
+                    <!-- WhatsApp Bot -->
+                    <div class="contact-card">
+                        <div class="contact-type">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3>WhatsApp Bot</h3>
+                        </div>
+                        <p class="phone-number">+62 823-2655-1707</p>
+                        <p class="contact-description">Deshbanaa X bot - Untuk layanan otomatis dan informasi terprogram</p>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('+6282326551707')">
+                            <i class="fab fa-whatsapp"></i> Kirim Pesan ke Bot
+                        </button>
+                    </div>
+                    
+                    <!-- WhatsApp Resmi -->
+                    <div class="contact-card">
+                        <div class="contact-type">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3>WhatsApp Resmi</h3>
+                        </div>
+                        <p class="phone-number">+62 821-4315-4835</p>
+                        <p class="contact-description">Deshbanaa Official - Untuk komunikasi langsung dan pribadi</p>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('+6282143154835')">
+                            <i class="fab fa-whatsapp"></i> Kirim Pesan Resmi
+                        </button>
+                    </div>
+                    
+                    <!-- Informasi tambahan -->
+                    <div class="info-item" style="margin-top: 25px;">
+                        <div class="info-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Ketersediaan</h3>
+                            <p>Silakan hubungi melalui WhatsApp di atas. Respon cepat di jam operasional.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Glass Effect Note -->
+                    <div class="pref-card" style="margin-top: 30px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(255, 255, 255, 0.1) 100%);">
+                        <div class="pref-header">
+                            <div class="pref-icon" style="background: linear-gradient(135deg, #60a5fa, #3b82f6);">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="pref-title">Desain Liquid Glass</div>
+                        </div>
+                        <div class="pref-content">
+                            <p>Profil ini menggunakan efek <strong>Liquid Glass Modern</strong> dengan transparansi biru-putih yang elegan dan animasi halus untuk pengalaman visual yang premium.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-content">
+                    <p>© 2023 <span class="footer-highlight">Deo Sahbana Putra</span> | Profil Pribadi</p>
+                    <p>TIDAK BOLEH DISEBARLUASKAN</p>
+                    <p class="footer-small">©2026 | Web By : Deshbanaaa Space</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk membuka WhatsApp
+        function openWhatsApp(phoneNumber) {
+            const cleanedNumber = phoneNumber.replace(/\s+/g, '').replace(/-/g, '');
+            window.open(`https://wa.me/${cleanedNumber}`, '_blank');
+        }
+        
+        // Log ketika halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Halaman profil Deo Sahbana Putra telah dimuat dengan sempurna.");
+            console.log("Waktu akses: " + new Date().toLocaleString("id-ID"));
+            
+            // Optimasi performa scroll
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        // Smooth scroll handling
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        });
+        
+        // Efek hover untuk semua contact card
+        const contactCards = document.querySelectorAll('.contact-card, .pref-card');
+        contactCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-6px) translateZ(0)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) translateZ(0)';
+            });
+        });
+        
+        // Optimasi animasi untuk performa lebih baik
+        const prefCards = document.querySelectorAll('.pref-card');
+        prefCards.forEach(card => {
+            card.style.willChange = 'transform';
+        });
+    </script>
+</body>
+</html>
+```
